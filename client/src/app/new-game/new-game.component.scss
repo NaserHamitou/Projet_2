@@ -1,0 +1,131 @@
+@import '~@angular/material/theming';
+
+$app-primary: mat-palette($mat-indigo-palette);
+$app-accent: mat-palette($mat-pink-palette, A200, A100, A400);
+$theme: mat-light-theme(
+    (
+        color: (
+            primary: $app-primary,
+            accent: $app-accent,
+        ),
+    )
+);
+$color: mat-get-color-config($theme);
+
+$primary: map-get($color, primary);
+$accent: map-get($color, accent);
+
+.title {
+    font-size: 30px;
+    padding-top: 50px;
+}
+
+.wrapper {
+    display: inline-block;
+    padding: 25px 0px 100px 0px;
+}
+
+.alert {
+    color: #7e0303;
+    background-color: rgb(238, 198, 197);
+}
+
+.alert2 {
+    margin-top: 200px;
+    color: rgb(8, 8, 8);
+    background-color: rgb(148, 245, 200);
+}
+
+.saveButton {
+    margin-top: 30px;
+    margin-left: 80px;
+}
+
+.saveButton:hover:enabled {
+    background-color: mat-color($accent, 300);
+}
+
+.sameLine {
+    display: inline-block;
+    padding-right: 5px;
+}
+
+.timerButton:hover {
+    background-color: mat-color($primary, 400);
+    color: white;
+}
+
+.timerButton {
+    display: inline-block;
+}
+
+.parameters {
+    overflow: hidden;
+}
+
+.turnTimeContainer {
+    float: left;
+}
+
+.randomBonusContainer {
+    padding-left: 350px;
+}
+
+.btn-primary {
+    margin-left: 30px;
+}
+
+.btn-primary:hover:enabled {
+    background-color: mat-color($primary, 400);
+}
+
+.nameInput {
+    height: 40px;
+}
+
+.formContainer {
+    float: left;
+}
+
+.second {
+    margin-right: -200px;
+    padding-left: 350px;
+    padding-top: 20px;
+}
+
+.container {
+    max-width: 500px;
+    margin: auto;
+}
+
+.playerName {
+    padding-top: 40px;
+    color: mat-color($primary, 600);
+}
+
+.parametersTitle {
+    color: mat-color($primary, 600);
+}
+
+select {
+    width: 150px;
+    height: 30px;
+    font-size: 18px;
+}
+
+option {
+    width: 150px;
+    height: 50px;
+}
+
+#start-button:hover:disabled {
+    color: rgb(104, 104, 104);
+    background-color: rgb(26, 26, 26);
+    cursor: not-allowed;
+}
+
+#start-button:hover:enabled {
+    color: white;
+    background-color: green;
+    cursor: pointer;
+}

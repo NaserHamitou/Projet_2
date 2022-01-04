@@ -1,0 +1,43 @@
+<div id="bonus-container">
+    <h1 style="text-align: center; padding-top: 10px">Mode LOG2990</h1>
+    <hr />
+    <div id="gold">
+        <div id="inside">
+            <h3>Bonus publiques</h3>
+            <hr size="1px" width="90%" color="#9A9A9A" />
+            <p [ngStyle]="{ 'text-decoration': publicObjectives[0].completed }" style="font-family: 'Trebuchet MS'; margin: 5px; font-size: 15px">
+                <b>{{ publicObjectives[0].name }}</b>
+                <span *ngIf="!publicObjectives[0].isCompleted" style="color: green"> +{{ publicObjectives[0].points }} points</span>
+            </p>
+            <span *ngIf="publicObjectives[0].isCompleted">(Complété)</span>
+            <p *ngIf="!publicObjectives[0].isCompleted" style="font-family: 'Trebuchet MS'; margin: 5px; font-size: 13px">
+                {{ publicObjectives[0].description }}
+            </p>
+            <br />
+            <p [ngStyle]="{ 'text-decoration': publicObjectives[1].completed }" style="font-family: 'Trebuchet MS'; margin: 5px; font-size: 15px">
+                <b>{{ publicObjectives[1].name }}</b>
+                <span *ngIf="!publicObjectives[1].isCompleted" style="color: green"> +{{ publicObjectives[1].points }} points</span>
+            </p>
+            <span *ngIf="publicObjectives[1].isCompleted">(Complété)</span>
+            <p *ngIf="!publicObjectives[1].isCompleted" style="font-family: 'Trebuchet MS'; margin: 5px; font-size: 13px">
+                {{ publicObjectives[1].description }}
+            </p>
+        </div>
+    </div>
+    <br />
+    <!------------------------------------------------------------------------------------------------------------------------->
+    <div id="platinum">
+        <div id="inside">
+            <h3>Bonus privés</h3>
+            <hr size="1px" width="90%" color="#9A9A9A" />
+            <p [ngStyle]="{ 'text-decoration': privateObjective.completed }" style="font-family: 'Trebuchet MS'; margin: 5px; font-size: 15px">
+                <b>{{ privateObjective.name }}</b>
+                <span *ngIf="!privateObjective.isCompleted" style="color: green"> +{{ privateObjective.points }} points</span>
+            </p>
+            <span *ngIf="privateObjective.isCompleted">(Complété)</span>
+            <p *ngIf="!privateObjective.isCompleted" style="font-family: 'Trebuchet MS'; margin: 5px; font-size: 13px">
+                {{ privateObjective.description }}
+            </p>
+        </div>
+    </div>
+</div>

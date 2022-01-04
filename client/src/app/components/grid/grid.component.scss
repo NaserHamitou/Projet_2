@@ -1,0 +1,179 @@
+#main-container {
+    display: flex;
+    background-color: rgb(255, 255, 255);
+    height: 100%;
+    width: 100%;
+}
+
+#canvas-container {
+    flex: 7;
+    height: 100%;
+    justify-content: end;
+    display: grid;
+    background-color: #ffecbd;
+}
+
+#button-container {
+    flex: 4;
+    display: flex;
+    height: 100%;
+    justify-content: flex-start;
+    background-color: #0353a4;
+    flex-direction: column;
+    justify-content: space-evenly;
+    border-right: solid;
+    border-left: solid;
+    border-width: 2px;
+    border-color: #d81159;
+}
+
+#canvas2 {
+    grid-column: 1;
+    grid-row: 1;
+    cursor: pointer;
+}
+
+#canvas {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+#display-area {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.box {
+    flex: 1 1 1;
+    width: 62%;
+    height: 70px;
+    margin-left: 70px;
+    border: solid;
+    text-align: center;
+    background-color: #0d1b2a;
+    border-radius: 10px;
+    color: white;
+}
+
+.box:hover {
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+#font-button {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+#pass-button {
+    height: 100%;
+    width: 100%;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    border-radius: 10px;
+    font-size: larger;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+#play-button {
+    height: 100%;
+    width: 100%;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    border-radius: 10px;
+    font-size: 30px;
+    transition-duration: 0.4s;
+    background-color: #008000; /* Green */
+    color: white;
+    #play-logo {
+        display: none;
+    }
+    cursor: pointer;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+#play-button:hover {
+    background: linear-gradient(-60deg, #008000, #ffd000, #02c39a, #9ef01a, #008000);
+    background-size: 400% 400%;
+    animation: gradient 9s ease infinite;
+    height: 100%;
+    color: #04151f;
+    font-weight: bolder;
+    #play-logo {
+        display: inline;
+    }
+    box-shadow: rgb(85, 91, 255) 0px 2px 3px, rgb(31, 193, 27) 0px 0px 4px 6px, rgb(255, 217, 19) 0px 0px 7px 7px, rgb(255, 156, 85) 0px 0px 10px 12px,
+        rgb(255, 85, 85) 0px 0px 12px 15px;
+}
+
+#pass-button:hover {
+    background-color: #ff7b00; /* Green */
+    color: white;
+}
+
+#pass-button:disabled {
+    background-color: #3e454c; /* Green */
+    color: #515b65;
+    box-shadow: 0;
+}
+
+#play-button:disabled {
+    background: linear-gradient(-60deg, #4e4e4e, #838383, #b8b8b8, #747474, #2c2c2c);
+    color: #515b65;
+}
+
+#pass-button:disabled:hover {
+    cursor: not-allowed;
+    #play-logo {
+        display: none;
+    }
+}
+
+#play-button:disabled:hover {
+    cursor: not-allowed;
+}
+
+#row1 {
+    padding-left: 37px;
+}
+
+#row2 {
+    padding-left: 32px;
+}
+
+#row10 {
+    padding-left: 28px;
+}
+
+#row11 {
+    padding-left: 27px;
+}
+
+#row12 {
+    padding-left: 25px;
+}
+
+#row13 {
+    padding-left: 23px;
+}
+
+#game-over {
+    position: absolute;
+    top: 350;
+    left: 35vw;
+    width: 450px;
+    height: 550px;
+    border: black 8px solid;
+    border-radius: 10px;
+    background-color: #343a40;
+    box-shadow: rgba(0, 0, 0, 0.692) 0px 84px 55px, rgba(0, 0, 0, 0.12) 0px -42px 30px, rgba(0, 0, 0, 0.219) 20px 0px 40px,
+        rgba(0, 0, 0, 0.534) -31px 0px 13px, rgba(0, 0, 0, 0.09) 0px -13px 5px;
+}

@@ -1,0 +1,66 @@
+<div style="display: flex; flex-direction: row">
+    <div style="width: 330px; background-color: #0353a4"></div>
+    <div style="min-width: 620px; display: flex; flex-direction: row">
+        <span id="row1">1</span>
+        <span id="row2">2</span>
+        <span id="row2">3</span>
+        <span id="row2">4</span>
+        <span id="row2">5</span>
+        <span id="row2">6</span>
+        <span id="row2">7</span>
+        <span id="row2">8</span>
+        <span id="row2">9</span>
+        <span id="row10">10</span>
+        <span id="row11">11</span>
+        <span id="row12">12</span>
+        <span id="row13">13</span>
+        <span id="row13">14</span>
+        <span id="row13">15</span>
+    </div>
+</div>
+<div id="main-container" style="outline: none" tabindex="0" (keydown)="buttonDetect($event)" (focusout)="resetBoard()">
+    <div id="button-container">
+        <div class="box">
+            <div *ngIf="gameStateService.isPlaying" (click)="confirmPlay()" id="play-button"><br /><b>Jouer </b> <span id="play-logo"> ▶</span></div>
+        </div>
+        <div class="box">
+            <button *ngIf="gameStateService.isPlaying" (click)="changeState()" id="pass-button">Passer son tour</button>
+        </div>
+        <div class="box" id="font-button">
+            <div style="margin-top: 10px; font-size: 16px">Taille des caracteres:</div>
+            <input style="margin-top: 10px" type="range" min="11" max="14" value="13" [(ngModel)]="font" (mousemove)="changeFont($event)" />
+            <span style="margin: 10px; font-size: 20px">{{ font }}</span>
+        </div>
+    </div>
+    <div style="width: 20px; display: flex; flex-direction: column; justify-content: space-around">
+        <th>A</th>
+        <th>B</th>
+        <th>C</th>
+        <th>D</th>
+        <th>E</th>
+        <th>F</th>
+        <th>G</th>
+        <th>H</th>
+        <th>I</th>
+        <th>J</th>
+        <th>K</th>
+        <th>L</th>
+        <th>M</th>
+        <th>N</th>
+        <th>O</th>
+    </div>
+    <div id="canvas-container" (keydown)="buttonDetect($event)">
+        <canvas id="canvas" #gridCanvas [attr.width]="width" [attr.height]="height"> </canvas>
+        <app-letters-area id="display-area"></app-letters-area>
+        <canvas id="canvas2" #mouseCanvas [attr.width]="width" [attr.height]="height"></canvas>
+        <canvas
+            id="canvas2"
+            #selectCanvas
+            [attr.width]="width"
+            [attr.height]="height"
+            (mousemove)="mouseHighlight($event)"
+            (mouseup)="mousePlaceLetter.mouseSelect($event)"
+        ></canvas>
+    </div>
+    <app-game-over [scores]="pointCalculator.totalPointsDisplay" *ngIf="displayEndGameComponent" id="game-over"></app-game-over>
+</div>

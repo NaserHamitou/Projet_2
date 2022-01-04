@@ -1,0 +1,32 @@
+<div class="parameters">
+    <h1 class="parametersTitle">Paramètres de partie</h1>
+    <div class="turnTimeContainer">
+        <h3 class="sameLine">Temps d'un tour :</h3>
+        <p #turnTime id="turnTime" class="sameLine"></p>
+        <div>
+            <button mat-raised-button color="primary" (click)="decrementTurnTime()" class="timerButton">-</button>
+            <button mat-raised-button color="primary" (click)="incrementTurnTime()" class="timerButton">+</button>
+        </div>
+    </div>
+    <div class="randomBonusContainer">
+        <h3>Bonus aléatoires</h3>
+        <mat-checkbox color="primary" [(ngModel)]="isBonusChecked" ngModel ngDefaultControl>Activé</mat-checkbox>
+    </div>
+    <div class="dictionaryContainer">
+        <h3>Choix du dictionnaire</h3>
+        <mat-selection-list [multiple]="false" [(ngModel)]="selectedOptions">
+            <mat-list-option *ngFor="let recipient of map | keyvalue" [value]="recipient.key">
+                Nom: {{ recipient.key }} <br />
+                Description: {{ recipient.value }}
+            </mat-list-option>
+        </mat-selection-list>
+        Dictionnaire sélectionné: <span style="color: black">{{ selectedOptions[0] || 'Mon dictionnaire' }}</span>
+        <p *ngIf="map.size < 1" style="color: red">Connexion au serveur non établie, dictionnaire par défaut est choisi</p>
+    </div>
+</div>
+
+<div class="saveButton">
+    <button mat-raised-button color="accent" (click)="confirmParameters()" class="saveButton" type="submit" [disabled]="isInvalid">
+        Confirmer les parametres
+    </button>
+</div>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+
+    <head>
+        <link rel="stylesheet" href="game-options.component.scss" />
+    </head>
+
+    <body>
+        <!-- <div [style.display]="mainPage"  > -->
+        <div class="container">
+            <img class="scrabbleLogo" src="https://bit.ly/3m206ss" width="400" height="80" alt="Logo Scrabble" />
+
+            <button mat-raised-button color="primary" class="button" (click)="setSingleplayer()"
+                routerLink="/new-game">Jouer seul</button>
+            <button mat-raised-button color="primary" class="button" (click)="setMultiplayer()"
+                routerLink="/roomManager">Mode multijoueur</button>
+
+
+
+            <button mat-raised-button color="primary" class="button"
+                onclick="document.getElementById('id01').style.display='block'" (click)="getBestScores()">
+                Voir les meilleurs scores
+            </button>
+
+            <button mat-raised-button color="primary" class="button" routerLink="/game-options">Retour</button>
+
+            <div class="footer-item">
+                <h4 class="team-name">Équipe Poly</h4>
+                <p>
+                    <span>Samir</span>, <span>Tristan</span>, <span>Adam</span>, <span>Nacer</span>,
+                    <span>Yassine</span>
+                </p>
+            </div>
+        </div>
+
+        <div class="w3-container">
+            <div id="id01" class="w3-modal">
+                <div class="w3-modal-content w3-animate-top w3-card-4">
+                    <header class="w3-container w3-teal">
+                        <span onclick="document.getElementById('id01').style.display='none'"
+                            class="w3-button w3-display-topright" (click)="clearscores()"
+                            onclick="history.go(0)">&times;</span>
+                        <h2>Les meilleurs score</h2>
+                    </header>
+
+                    <div class="w3-container">
+                        <div class="row">
+                            <div class="column">
+                                <table>
+                                    <h1 class="center">MODE LOG2990</h1>
+
+                                    <tr>
+                                        <th>Numero</th>
+                                        <th>Nom de joeur</th>
+                                        <th>score</th>
+                                    </tr>
+
+                                    <tr *ngFor="let score of scorLOG; let i = index" ng-repeat="x in names">
+                                        <td>{{ i + 1 }}</td>
+                                        <td>{{ this.listLog[i] }}</td>
+                                        <td>{{ score }}</td>
+                                        <td>{{ this.listLog[i]}} </td>
+                                        <td>{{ score}}</td>
+
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="column">
+                                <table>
+                                    <h1 class="center">MODE CLASSIQUE</h1>
+
+                                    <tr>
+                                        <th>Numero</th>
+                                        <th>Nom de joeur</th>
+                                        <th>score</th>
+                                    </tr>
+                                    <tr *ngFor="let score of scorClassique; let i = index" ng-repeat="x in names">
+                                        <td>{{ i + 1 }}</td>
+                                        <td>{{ this.listClassique[i] }}</td>
+                                        <td>{{ score }}</td>
+
+                                        <td> {{this.listClassique[i]}} </td>
+                                        <td>{{ score}}</td>
+
+                                    </tr>
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+
+</html>

@@ -1,0 +1,41 @@
+.form {
+    width: 100%;
+    height: 25%;
+}
+
+#boxInput {
+    min-height: 60px;
+    max-height: 120px;
+    overflow: auto;
+    overflow-y: scroll;
+}
+
+.box-full-width {
+    width: 100%;
+}
+
+.boxDisplay {
+    width: 100%;
+    background-color: black;
+    color: white;
+    height: 75%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    word-break: break-word;
+    padding-left: 10px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    white-space: pre-line;
+}
+
+[mat-fab] {
+    position: absolute;
+    right: 2%;
+    top: 35px;
+    z-index: 1;
+}
+
+:host ::ng-deep .mat-form-field-flex {
+    padding-bottom: 12px !important;
+}

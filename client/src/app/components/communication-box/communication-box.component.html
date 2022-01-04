@@ -1,0 +1,11 @@
+<h2 style="text-align: center; width: 346px; height: 7%; margin-bottom: 0px; background-color: cadetblue; color: white; border: 2px solid black">
+    Boîte de dialogue
+</h2>
+<div #boxOutput id="boxOutput" class="boxDisplay">Envoyer un message à l'adversaire ou entrer une commande.<br /></div>
+<form #boxForm="ngForm" id="formInput" class="form" (ngSubmit)="boxInput()">
+    <mat-form-field class="box-full-width" appearance="fill">
+        <mat-label>Entrer le texte ici</mat-label>
+        <input autofocus [(ngModel)]="userInput" name="user" type="textarea" id="boxInput" maxlength="512" matInput placeholder="..." />
+        <mat-hint align="end">{{ userInput.length }} / 512</mat-hint>
+    </mat-form-field>
+</form>

@@ -1,0 +1,82 @@
+<h1 class="title">Dictionnaires</h1>
+<div class="dictionaryList">
+    <mat-selection-list (selectionChange)="checkIfShouldResetOptions()" [multiple]="false" #dictionariesOptionsElem [(ngModel)]="selectedOptions">
+        <mat-list-option *ngFor="let recipient of map | keyvalue" [value]="recipient.key">
+            Nom: {{ recipient.key }} <br />
+            Description: {{ recipient.value }}
+        </mat-list-option>
+    </mat-selection-list>
+
+    <button mat-raised-button [disabled]="selectedOptions.length < 1" color="primary" class="button" (click)="downloadDictionary()">
+        Télécharger le dictionnaire
+    </button>
+
+    <button
+        mat-raised-button
+        [disabled]="selectedOptions.length < 1 || selectedOptions[0] === 'Mon dictionnaire'"
+        color="warn"
+        class="button"
+        (click)="isUpdateClicked = true"
+    >
+        Modifier le dictionnaire
+    </button>
+
+    <button
+        mat-raised-button
+        [disabled]="selectedOptions.length < 1 || selectedOptions[0] === 'Mon dictionnaire'"
+        color="accent"
+        class="button"
+        (click)="deleteDictionary()"
+    >
+        Supprimer le dictionnaire
+    </button>
+
+    <p style="color: blue" *ngIf="selectedOptions.length > 0">
+        Dictionnaire sélectionné: <span style="color: black">{{ selectedOptions[0] }}</span>
+    </p>
+
+    <div class="updateDictionary" *ngIf="isUpdateClicked">
+        <h3>Modification d'un dictionnaire</h3>
+        <mat-selection-list
+            style="width: 300px; margin: auto"
+            (selectionChange)="onUpdateOptionChange()"
+            #updateOptionsElem
+            [(ngModel)]="updateSelectedOptions"
+        >
+            <mat-list-option *ngFor="let updateOption of updateOptions" [value]="updateOption">{{ updateOption }}</mat-list-option>
+        </mat-selection-list>
+        <mat-form-field *ngIf="updateSelectedOptions.length >= 1" class="form-field" appearance="fill">
+            <mat-label>Nouvelle Valeur</mat-label>
+            <textarea matInput minLength="4" [maxLength]="maxUpdateLength" type="text" [(ngModel)]="newValue" placeholder="..."></textarea>
+            <mat-hint align="end">{{ newValue.length }} / {{ maxUpdateLength }}</mat-hint>
+            <span style="color: red" *ngIf="newValue.length < 4 && newValue">La nouvelle valeur doit contenir au minimum 4 caractères</span>
+        </mat-form-field>
+        <button
+            mat-raised-button
+            *ngIf="updateSelectedOptions.length >= 1"
+            [disabled]="newValue.length < 4"
+            color="primary"
+            class="button"
+            (click)="confirmUpdate()"
+        >
+            Confirmer la modification
+        </button>
+        <button mat-raised-button color="accent" class="button" (click)="resetSelectedOptions()">Annuler la modification</button>
+    </div>
+</div>
+
+<div class="upload-wrapper">
+    <h1 class="upload-title">Téléversement d'un dictionnaire</h1>
+    <input type="file" class="file-input" [accept]="requiredFileType" (change)="onFileSelected()" #fileUpload />
+
+    <div class="file-select">
+        {{ fileName || 'Aucun fichier sélectionné.' }}
+
+        <button mat-mini-fab color="primary" class="select-btn" (click)="fileUpload.click()">
+            <mat-icon>attach_file</mat-icon>
+        </button>
+    </div>
+    <div>
+        <button mat-raised-button [disabled]="!fileName" color="accent" class="button" (click)="onFileUpload()">Téléverser le dictionnaire</button>
+    </div>
+</div>

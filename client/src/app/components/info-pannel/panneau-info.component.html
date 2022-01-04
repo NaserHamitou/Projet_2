@@ -1,0 +1,51 @@
+<div style="background-color: #e8871e">
+    <div [style.display]="quitBox" id="quit-window">
+        <div style="font-family: Microsoft YaHei UI; font-size: larger; margin-top: 25px; color: black">
+            <b>⚠ Êtes-vous sur de vouloir quitter ?</b>
+        </div>
+        <div style="display: flex; justify-content: space-evenly; margin-top: 50px">
+            <button id="yes-quit-button" routerLink="/home" (click)="quitGame()">Oui</button>
+            <button id="cancel-quit-button" (click)="cancelQuit()">Annuler</button>
+        </div>
+    </div>
+    <button (click)="quitGameWindow()" id="quit-button">
+        <div id="x-button">X</div>
+        Quitter
+    </button>
+    <div id="pannel-container">
+        <div id="left-player" [style.box-shadow]="player1">
+            <div id="user">
+                <div id="username">{{ players[0].name }}</div>
+                <div id="score">
+                    <span>Score:</span>
+                    <span style="font-size: 20px; margin: 3px">{{ this.players[0].score }}</span>
+                    <span *ngIf="players[0].letterHolderAmount < 7" style="margin-left: 15px">
+                        Lettres: <span style="font-size: 20px">{{ players[0].letterHolderAmount }}</span>
+                    </span>
+                </div>
+            </div>
+            <div id="status" [style.display]="player1">entrain de jouer..</div>
+        </div>
+
+        <div id="time">
+            <span style="color: black">TEMPS</span>
+            <hr />
+            <span style="font-size: 30px"> {{ timeLeft }} </span>
+        </div>
+
+        <div id="right-player" [style.box-shadow]="player2">
+            <div id="status2" [style.display]="player2">entrain de jouer..</div>
+            <div id="user2">
+                <div id="username2">{{ players[1].name }}</div>
+                <div id="score" style="text-align: right">
+                    Score:
+                    <span style="font-size: 20px">{{ this.players[1].score }}</span>
+                    <span *ngIf="players[1].letterHolderAmount < 7" style="margin-left: 15px">
+                        Lettres: <span style="font-size: 20px">{{ players[1].letterHolderAmount }}</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-virtual-player></app-virtual-player>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+
+    <head>
+        <link rel="stylesheet" href='./admin-page.component.scss' />
+    </head>
+
+    <body>
+        <div class="wrapper">
+            <h1 class="title">Page admin</h1>
+            <app-dictionary-upload></app-dictionary-upload>
+        </div>
+        <button mat-raised-button color="primary" class="button"
+            onclick="document.getElementById('id01').style.display='block'" (click)="getListJV()">
+            List des Joeurs Virtuels
+        </button>
+        <div class="w3-container">
+            <div id="id01" class="w3-modal">
+                <div class="w3-modal-content w3-animate-top w3-card-4">
+                    <header class="w3-container w3-teal">
+                        <span onclick="document.getElementById('id01').style.display='none'"
+                            class="w3-button w3-display-topright">&times;</span>
+                        <h2> List Des Joeurs Virtuels</h2>
+                    </header>
+                    <div class="w3-container">
+                        <div class="row">
+                            <div class="column">
+                                <table>
+                                    <h1 class="center">Niveau : Debutant </h1>
+                                    <tr>
+                                        <th>Numero</th>
+                                        <th>Nom de joeur</th>
+                                        <th>Niveau</th>
+                                        <th> <button class="btn"> Action </button> </th>
+                                    </tr>
+                                    <tbody>
+                                        <tr [id]="(listJVD[i].playerName)" *ngFor="let player of listJVD; let i = index"
+                                            ng-repeat="x in names">
+                                            <td>{{ i + 1 }}</td>
+
+                                            <td *ngIf="!isChangedD[i]">{{ listJVD[i].playerName }}
+                                            </td>
+
+
+                                            <td *ngIf="isChangedD[i]">
+
+                                        <tr>
+
+
+                                            <td> <input value={{(listJVD[i].playerName)}} id="inputnameD"></td>
+                                            <td> <button class="btn1"
+                                                    (click)="confirmerNameD(i, this.ID_debutant[i])">Confirmer</button>
+                                                <button class="btn2" (click)="cancelChangeD(i)">Annuler</button>
+                                            </td>
+
+                                        </tr>
+                                        </td>
+
+
+                                        <td>{{ listJVD[i].level }}</td>
+
+                                        <td class="contentCell">
+                                            <button type="button" class="btn" mat-raised-button color="accent"
+                                                type="submit" (click)="deleteVPD(i, listJVD[i].playerName)">
+                                                <mat-icon color="red" type="button">delete</mat-icon>
+                                            </button>
+
+                                            <button type="button" class="btn" mat-raised-button color="accent"
+                                                type="submit" (click)="updateNameD(i,listJVD[i].playerName )"
+                                                (click)="updateJVD( this.ID_debutant[i] , listJVD[i].playerName )">
+                                                <mat-icon>settings</mat-icon>
+                                            </button>
+
+
+                                        </td>
+                                        </tr>
+                                        <tr class="blank_row">
+                                            <td> </td>
+
+                                            <td> <input id="VPDname" name="usernameD" [(ngModel)]="VPDname" type="text"
+                                                    placeholder="Nom de joeur" /> </td>
+                                            <td> </td>
+                                            <td class="contentCell" contenteditable="true">
+                                                <button type="button" class="btn" (click)="addVPD()">+</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="column">
+                                <table>
+                                    <h1 class="center">Niveau : Expert </h1>
+
+                                    <tr>
+                                        <th>Numero</th>
+                                        <th>Nom de joeur</th>
+                                        <th>Niveau</th>
+                                        <th> Action </th>
+                                    </tr>
+                                    <tbody>
+                                        <tr [id]="(listJVE[i].playerName)" *ngFor="let player of listJVE; let i = index"
+                                            ng-repeat="x in names">
+                                            <td>{{ i + 1 }}</td>
+
+                                            <td *ngIf="!isChangedE[i]">{{ listJVE[i].playerName }}
+                                            </td>
+
+
+                                            <td *ngIf="isChangedE[i]">
+
+                                        <tr>
+
+
+                                            <td> <input value={{(listJVE[i].playerName)}} id="inputnameE"></td>
+                                            <td> <button class="btn1"
+                                                    (click)="confirmerNameE(i, this.ID_expert[i])">Confirmer</button>
+                                                <button class="btn2" (click)="cancelChangeE(i)">Annuler</button>
+                                            </td>
+
+                                        </tr>
+                                        </td>
+
+
+                                        <td>{{ listJVE[i].level }}</td>
+
+                                        <td class="contentCell">
+                                            <button type="button" class="btn" mat-raised-button color="accent"
+                                                type="submit" (click)="deleteVPE(i, listJVE[i].playerName)">
+                                                <mat-icon color="red" type="button">delete</mat-icon>
+                                            </button>
+
+                                            <button type="button" class="btn" mat-raised-button color="accent"
+                                                type="submit" (click)="updateNameE(i, listJVD[i].playerName )"
+                                                (click)="updateJVE( this.ID_expert[i], listJVD[i].playerName )">
+                                                <mat-icon>settings</mat-icon>
+                                            </button>
+
+
+                                        </td>
+                                        </tr>
+                                        <tr class="blank_row">
+                                            <td> </td>
+
+                                            <td> <input id="VPEname" name="usernameD" [(ngModel)]="VPEname" type="text"
+                                                    placeholder="Nom de joeur" /> </td>
+                                            <td> </td>
+                                            <td class="contentCell" contenteditable="true">
+                                                <button type="button" class="btn" (click)="addVPE()">+</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </body>
+
+</html>

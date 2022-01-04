@@ -1,0 +1,154 @@
+@import '~@angular/material/theming';
+
+.title {
+    font-size: 30px;
+    padding-top: 50px;
+}
+
+.wrapper {
+    text-align: center;
+}
+@import '~@angular/material/theming';
+
+$app-primary: mat-palette($mat-indigo-palette);
+$app-accent: mat-palette($mat-pink-palette, A200, A100, A400);
+$theme: mat-light-theme(
+    (
+        color: (
+            primary: $app-primary,
+            accent: $app-accent,
+        ),
+    )
+);
+$color: mat-get-color-config($theme);
+
+$primary: map-get($color, primary);
+$accent: map-get($color, accent);
+
+body {
+    background-color: white;
+}
+h4 {
+    color: black;
+    border: 1px rgb(230, 176, 212);
+    padding: 25px;
+}
+
+p {
+    color: mat-color($accent, 600);
+    padding: 5px;
+}
+
+button  {
+    display: block;
+    width: 300px;
+    height: 50px;
+    border: 15px;
+    border-radius: 8px;
+    transition-duration: 0.5;
+    font-size: large;
+    margin: 15px;
+}
+
+button:hover {
+    background-color: mat-color($primary, 300);
+}
+
+button[disabled]:hover {
+    cursor: not-allowed;
+}
+
+.container {
+    padding-top: 40px;
+    max-width: 500px;
+    margin: auto;
+}
+
+  
+* {
+    box-sizing: border-box;
+  }
+  
+  .row {
+    margin-left:auto;
+    margin-right:auto;
+   
+    
+  }
+    
+  .column {
+    float: centre;
+   
+    padding: 5px;
+  }
+  
+  .row::after {
+    content: "";
+    clear: both;
+    display: table;
+   
+  }
+  
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid rgb(173, 12, 12);
+    border: 3px solid green;
+  
+  }
+  
+  th, td {
+    text-align: left;
+    padding: 16px;
+   
+    
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+    border: 1px solid green;
+  }
+  .btn{
+    display: block;
+    width: 120px;
+    height: 50px;
+    border: 15px;
+    border-radius: 8px;
+    transition-duration: 0.5;
+    font-size: large;
+    margin: 2px;
+
+  }
+
+  .btn1{
+    background-color: rgb(127, 241, 127);
+    display: block;
+    width: 120px;
+    height: 50px;
+    border: 15px;
+    border-radius: 8px;
+    transition-duration: 0.5;
+    font-size: large;
+    margin: 2px;
+
+  }
+  .btn2{
+    background-color: rgb(240, 123, 123);
+    display: block;
+    width: 120px;
+    height: 50px;
+    border: 15px;
+    border-radius: 8px;
+    transition-duration: 0.5;
+    font-size: large;
+    margin: 2px;
+
+  }
+
+  .deletebtn {
+    border-radius: 4px;
+    color: white; 
+    background-color: var(--theme-purple); 
+    border-style: none;
+}

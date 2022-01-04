@@ -1,0 +1,17 @@
+<div style="height: 100%; width: 100%; position: absolute; z-index: 2; background-color: #343a40; border-radius: 10px">
+    <h1 id="title">Partie terminé !</h1>
+    <hr />
+    <br />
+    <div>
+        <div id="player-text">
+            <span style="-webkit-text-stroke: 1px rgba(0, 81, 255, 0.726)"> {{ this.communicationService.playerName }} </span>
+            <span style="-webkit-text-stroke: 1px rgba(0, 81, 255, 0.726); margin-bottom: 70px">{{ scores[0] }} points</span>
+            <br />
+            <br />
+            <span style="-webkit-text-stroke: 1px rgba(245, 57, 57, 0.767)"> {{ this.communicationService.opponentName }} </span>
+            <span style="-webkit-text-stroke: 1px rgba(245, 57, 57, 0.767)">{{ scores[1] }} points</span>
+        </div>
+    </div>
+    <div id="text">{{ result }}</div>
+    <button (click)="quitButton()" id="exit-button">retourner au menu</button>
+</div>

@@ -1,0 +1,163 @@
+<!-- List of Rooms-->
+<div [style.display]="listRoomBox">
+    <h1
+        style="
+            position: absolute;
+            top: 50px;
+            left: 43vw;
+            text-align: center;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            font-size: 34px;
+        "
+    >
+        Liste des parties
+    </h1>
+    <div class="title">
+        <div id="container">
+            <div *ngFor="let room of rooms" id="room-list">
+                <div style="font-family: Lucida Console; font-size: 24px; align-self: center; margin-left: 40px">{{ room.nameOfRoom }}</div>
+                <div style="font-family: Lucida Console; font-size: 18px; align-self: center; position: fixed; margin-left: 18rem">
+                    Créée par: {{ room.nameOfhost }}
+                </div>
+                <button id="join-button" (click)="joinBox(room.nameOfRoom)">Joindre</button>
+            </div>
+        </div>
+        <div style="display: inline-flexbox; width: 97%; margin-left: 25px; margin-top: 15px">
+            <button id="button-go-back" (click)="goBack()">Retour</button>
+            <button id="button-create" (click)="createBox()">Créer une nouvelle partie</button>
+            <button *ngIf="rooms.length > 0" [disabled]="rooms.length < 2" id="button-random" (click)="joinRandom()">
+                <div><span style="padding: 2px">Placement aléatoire</span></div>
+                <img src="../../../assets/random.png" height="20px" />
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Create Room-->
+<button [style.display]="createRoomBox" id="cancel-creation" (click)="cancelCreatioon()">&#8630; Retour</button>
+<div [style.display]="createRoomBox" id="room-creation">
+    <h1 style="font-size: 36px; margin-top: 10px; color: rgb(255, 255, 255); text-align: center">Création d'une partie</h1>
+    <hr />
+    <div style="margin-top: 30px; color: rgb(255, 255, 255); padding: 10px">
+        <div>
+            <p style="font-size: 18px">Nom d'utilisateur :</p>
+            <input [(ngModel)]="commicationData.playerName" />
+        </div>
+        <br />
+        <div>
+            <p style="font-size: 18px">Nom de la partie :</p>
+            <input type="text" [(ngModel)]="roomName" (keyup)="verifyRoomName(roomName)" required pattern="[a-zA-Z0-9-]+" />
+            <p *ngIf="!roomNameValid" style="color: rgb(160, 1, 1)">ce nom est deja pris</p>
+        </div>
+    </div>
+    <br />
+
+    <div style="color: rgb(255, 255, 255); font-weight: bold; padding: 10px">
+        <app-settings></app-settings>
+        <br />
+    </div>
+    <button [disabled]="!roomNameValid" style="margin-left: 40%" (click)="createRoom(roomName)">Créer la partie</button>
+</div>
+
+<!-- Waiting Room-->
+<div id="waintingRoom" [style.display]="waitingRoom">
+    <h2 class="waiting-text">En attente de connexion d'un autre joueur...</h2>
+
+    <div class="loader"></div>
+
+    <button (click)="playSolo()">Jouer Solo</button>
+</div>
+
+<!-- Join a room-->
+<div
+    [style.display]="joinDisplay"
+    style="height: 100%; width: 100%; position: sticky; z-index: 1; background-color: rgba(119, 119, 119, 0.644)"
+    (click)="joinDisplay = 'none'"
+></div>
+<div
+    [style.display]="joinDisplay"
+    style="
+        position: absolute;
+        z-index: 2;
+        top: 15vh;
+        left: 40vw;
+        background: linear-gradient(0deg, rgb(0, 22, 24) 0%, rgba(0, 0, 0, 0.95) 56%);
+        padding: 10px;
+        border-radius: 10px;
+        box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px; ;
+    "
+>
+    <p style="text-align: center; color: white; font-size: 26px">Partie: {{ roomName }}</p>
+    <hr />
+    <br />
+    <p style="text-align: center; color: white; font-size: 20px">Veuillez entrer votre nom</p>
+    <input type="text" minlength="4" maxlength="12" [(ngModel)]="commicationData.playerName" #user="ngModel" ngModel />
+    <br />
+    <br />
+    <div style="margin-top: 10px">
+        <button id="join-cancel" (click)="joinDisplay = 'none'; commicationData.playerName = ''">Annuler &#10005;</button>
+        <button id="join-confirm" (click)="joinRoom(user.value)">Rejoindre &#10148;</button>
+    </div>
+    <br />
+</div>
+
+<!-- <div [style.display]="createRoomBox" style="border: solid 1px black">
+    <div>Creation d'une partie</div>
+    <div>Veuillez entrer votre nom</div>
+    <input
+        type="text"
+        required
+        minlength="4"
+        maxlength="12"
+        [(ngModel)]="commicationData.playerName"
+        #user="ngModel"
+        pattern="[A-Za-z0-9]+"
+        required
+        ngModel
+    />
+    <div>Entrer le nom de la partie</div>
+    <input
+        #roomInput="ngModel"
+        [(ngModel)]="roomName"
+        required
+        minlength="4"
+        maxlength="12"
+        pattern="[A-Za-z0-9]+"
+        required
+        (keyup.enter)="createRoom(roomInput.value)"
+    />
+    <app-settings [isInvalid]="user.invalid"></app-settings>
+    <button [disabled]="user.invalid || roomInput.invalid" (click)="createRoom(roomInput.value)">Confirmer</button>
+</div>
+
+<div [style.display]="joinDisplay">
+    <div>Veuillez entrer votre nom</div>
+    <input
+        type="text"
+        minlength="4"
+        maxlength="12"
+        [style.disabled]="roomInput.invalid"
+        [(ngModel)]="commicationData.playerName"
+        #user="ngModel"
+        ngModel
+    />
+    <button (click)="joinRoom(user.value)">rejoindre</button>
+</div>
+
+<div [style.display]="listRoomBox" style="border: solid 1px black">
+    <ul>
+        <li *ngFor="let room of roomList">{{ room }} {{ hostName }} <button (click)="joinBox(room)">rejoindre</button></li>
+    </ul>
+    <button (click)="createBox()">Creer une partie</button>
+</div>
+
+<div id="waintingRoom" [style.display]="waitingRoom">
+    <h2 class="waiting-text">En attente de connexion d'un autre joueur...</h2>
+
+    <div class="loader"></div>
+
+    <button (click)="playSolo()">Jouer Solo</button>
+</div>
+
+<button style="position: absolute; top: 500px" (click)="goBack()">Retour</button>
+ -->

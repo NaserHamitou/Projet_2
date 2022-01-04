@@ -1,0 +1,74 @@
+<div class="container">
+    <h1 class="title">Initialisation d'une nouvelle partie</h1>
+    <div style="height: 200px">
+        <div class="wrapper">
+            <div class="formContainer" style="width: 100px">
+                <span class="playerName">Nom du joueur</span>
+                <form class="nameForm">
+                    <mat-form-field appearance="fill">
+                        <div class="premier">
+                            <div class="form-group">
+                                <mat-label>Veuillez entrer votre nom :</mat-label>
+                                <input
+                                    matInput
+                                    class="nameInput"
+                                    type="text"
+                                    id="user"
+                                    placeholder="Ex. Tristan"
+                                    name="name"
+                                    required
+                                    minlength="4"
+                                    maxlength="12"
+                                    pattern="[A-Za-z0-9]+"
+                                    [(ngModel)]="communicationBoxData.playerName"
+                                    [(ngModel)]="virtualPlayerService.playerName"
+                                    #user="ngModel"
+                                    ngModel
+                                    required
+                                />
+                            </div>
+                        </div>
+                    </mat-form-field>
+                </form>
+                <tr *ngIf="user.errors || user.dirty || user.touched" class="alert">
+                    <div *ngIf="user.errors?.required">Nom obligatoire</div>
+                    <div *ngIf="user.errors?.minlength">Le nom doit comporter au moins 4 caractères ***</div>
+                    <div *ngIf="user.errors?.pattern">Uniquement les caractères alphanumériques ***</div>
+                </tr>
+
+                <tr *ngIf="!(user.errors?.minlength || user.errors?.required || user.errors?.pattern)">
+                    <td class="alert2">Nom valide</td>
+                </tr>
+            </div>
+            <div class="second" style="font-size: large">
+                <label for="form-libelle">Votre adversaire est : </label>
+                <tr class="advarsary" style="color: rgb(206, 0, 0); font-size: x-large">
+                    <b>
+                        {{ virtualPlayerService.getOpponentName() }}
+                    </b>
+                </tr>
+                <br />
+                <tr class="advarsary">
+                    Niveau :
+                    <br />
+                    <select (change)="changeVirtualPlayerName($event)">
+                        <option *ngFor="let item of virtualPlayerService.levels">{{ item }}</option>
+                    </select>
+                </tr>
+            </div>
+        </div>
+    </div>
+    <hr />
+    <app-settings [isInvalid]="user.invalid"></app-settings>
+    <br />
+    <button
+        id="start-button"
+        style="margin-top: 50px; font-size: 32px; height: 50px; margin-left: 25%"
+        [disabled]="user.invalid"
+        mat-raised-button
+        routerLink="/game"
+        (click)="playSound()"
+    >
+        Lancer la partie
+    </button>
+</div>

@@ -1,0 +1,147 @@
+@import 'https://fonts.googleapis.com/css?family=Playfair+Display:400,700i,900i';
+
+* {
+    box-sizing: border-box;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+body {
+    font-family: 'Playfair Display', serif;
+    color: rgba(172, 170, 190, 1);
+    text-rendering: optimizeLegibility;
+    font-smooth: always;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 14px;
+}
+
+.wrap {
+    perspective-origin: 50% 50%;
+}
+
+.page {
+    margin: 3%;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 30px;
+    border-radius: 3px;
+    text-align: center;
+    font-size: 1.4vw;
+    h2 {
+        font-weight: bold;
+        font-size: 6.5vw;
+        font-weight: 900;
+        font-style: italic;
+        color: #dad8ec;
+    }
+}
+
+.svg {
+    position: absolute;
+    bottom: -105vh;
+    transform-style: preserve-3d;
+}
+
+@for $i from 1 through 10 {
+    $scale: random(2) - 0.4;
+
+    svg:nth-child(#{$i}) {
+        left: random(100) * 1% - 5;
+        animation: raise#{$i} 6 + random(15) + s linear infinite;
+        animation-delay: random(5) - 5 + s;
+        transform: scale(0.3 * $i - 0.6) rotate(random(360) + deg);
+        z-index: $i - 7;
+        filter: blur($i - 6 + px);
+
+        @keyframes raise#{$i} {
+            to {
+                bottom: 150vh;
+                transform: scale(0.3 * $i - 0.6) rotate(random(360) + deg);
+            }
+        }
+    }
+}
+
+#logo {
+    transform: scale(0.9);
+    position: absolute;
+
+    top: 15vh;
+    left: 22vw;
+}
+
+#classic {
+    background-image: linear-gradient(to right, #367c16 0%, #8dd832d3 51%, #368a0f 100%);
+}
+#classic {
+    width: 400px;
+    height: 100px;
+    position: absolute;
+    left: 37vw;
+    top: 40vh;
+    margin: 10px;
+    padding: 15px 45px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    box-shadow: 0 0 20px rgba(32, 145, 38, 0.795);
+    border-radius: 10px;
+    display: block;
+    font-family: 'Trebuchet MS';
+    font-weight: bold;
+    border-style: none;
+    font-size: x-large;
+    cursor: pointer;
+}
+
+#classic:hover {
+    background-position: right center; /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+}
+
+#log2990 {
+    background-image: linear-gradient(to right, #411fff 0%, #6675c7 51%, #4143e2 100%);
+}
+#log2990 {
+    width: 400px;
+    height: 100px;
+    position: absolute;
+    left: 37vw;
+    top: 56vh;
+    margin: 10px;
+    padding: 15px 45px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    box-shadow: 0 0 20px rgb(0, 88, 202);
+    border-radius: 10px;
+    display: block;
+    font-family: 'Trebuchet MS';
+    font-weight: bold;
+    border-style: none;
+    font-size: x-large;
+    cursor: pointer;
+}
+
+#log2990:hover {
+    background-position: right center; /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+}
